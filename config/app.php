@@ -155,7 +155,11 @@ return [
     */
 
     'providers' => [
-
+        /*
+         * Package JWT
+         */
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        
         /*
          * Laravel Framework Service Providers...
          */
@@ -208,8 +212,16 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
-    ])->toArray(),
+    'aliases' => [
+        Facade::defaultAliases()->merge([
+            // 'ExampleClass' => App\Example\ExampleClass::class,
+        ])->toArray(),
+    
+        /*
+         * Alias JWT
+         */
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+    ],
 
 ];
