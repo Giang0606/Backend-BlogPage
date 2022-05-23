@@ -31,6 +31,12 @@ Route::get('user/{id}', [App\Http\Controllers\Api\UserController::class, 'show']
 Route::post('user/{id}', [App\Http\Controllers\Api\UserController::class, 'update']);
 Route::delete('user/{id}', [App\Http\Controllers\Api\UserController::class, 'destroy']);
 
+Route::get('post', [App\Http\Controllers\Api\PostController::class, 'index']);
+Route::get('post/{url}', [App\Http\Controllers\Api\PostController::class, 'show']);
+Route::post('post', [App\Http\Controllers\Api\PostController::class, 'store']);
+Route::post('post/{url}', [App\Http\Controllers\Api\PostController::class, 'update']);
+Route::delete('post/{url}', [App\Http\Controllers\Api\PostController::class, 'destroy']);
+
 Route::get('category', [App\Http\Controllers\Api\CategoryController::class, 'index']);
 Route::get('category/{id}', [App\Http\Controllers\Api\CategoryController::class, 'show']);
 Route::post('category', [App\Http\Controllers\Api\CategoryController::class, 'store']);
