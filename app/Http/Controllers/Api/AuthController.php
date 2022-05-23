@@ -37,7 +37,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         $dataInsert = [
-            'name' => $request->name,
+            'username_login' => $request->username_login,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ];
@@ -113,7 +113,7 @@ class AuthController extends Controller
         return response()->json([
             'authorization' => [
                 'token' => Auth::refresh(),
-                'type' => 'bearer',
+                'type' => 'Bearer',
             ],
             'user' => Auth::user(),
         ]);
@@ -130,7 +130,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'token' => $token,
-            'type' => 'bearer',
+            'type' => 'Bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }

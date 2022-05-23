@@ -26,6 +26,11 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::post('logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
 });
 
+Route::get('user', [App\Http\Controllers\Api\UserController::class, 'index']);
+Route::get('user/{id}', [App\Http\Controllers\Api\UserController::class, 'show']);
+Route::post('user/{id}', [App\Http\Controllers\Api\UserController::class, 'update']);
+Route::delete('user/{id}', [App\Http\Controllers\Api\UserController::class, 'destroy']);
+
 Route::get('category', [App\Http\Controllers\Api\CategoryController::class, 'index']);
 Route::get('category/{id}', [App\Http\Controllers\Api\CategoryController::class, 'show']);
 Route::post('category', [App\Http\Controllers\Api\CategoryController::class, 'store']);
