@@ -30,8 +30,10 @@ class PostController extends Controller
         $posts = $this->postRepository->getAllPost();
 
         return response()->json([
+            'code' => 200,
+            'status' => "success",
             'data' => $posts,
-        ]);
+        ], 200);
     }
 
     /**
@@ -80,8 +82,10 @@ class PostController extends Controller
         $this->postRepository->createPost($dataInsert);
 
         return response()->json([
+            'code' => 201,
+            'status' => "success",
             'message' => "Post created successfully",
-        ]);
+        ], 201);
     }
 
     /**
@@ -96,12 +100,16 @@ class PostController extends Controller
 
         if (empty($post)) {
             return response()->json([
+                'code' => 204,
+                'status' => "error",
                 'message' => "Post not found",
-            ], 404);
+            ], 204);
         }
 
         return response()->json([
-            'post' => $post,
+            'code' => 200,
+            'status' => "success",
+            'data' => $post,
         ], 200);
     }
 
@@ -130,7 +138,7 @@ class PostController extends Controller
         if (empty($post)) {
             return response()->json([
                 'message' => "Post not found",
-            ], 404);
+            ], 204);
         }
 
         else {
@@ -169,9 +177,10 @@ class PostController extends Controller
             $this->postRepository->updatePost($dataUpdate);
 
             return response()->json([
-                'data' => $dataUpdate,
+                'code' => 200,
+                'status' => "success",
                 'message' => "Post updated successfully",
-            ]);
+            ], 200);
         }
     }
 
@@ -185,14 +194,18 @@ class PostController extends Controller
     {
         if (empty($this->postRepository->findPostByUrl($postUrl))) {
             return response()->json([
+                'code' => 204,
+                'status' => "error",
                 'message' => "Post not found",
-            ], 404);
+            ], 204);
         }
 
         $this->postRepository->deletePost($postUrl);
 
         return response()->json([
+            'code' => 200,
+            'status' => "success",
             'message' => "Post deleted successfully",
-        ]);
+        ], 200);
     }
 }

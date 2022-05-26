@@ -27,6 +27,8 @@ class CategoryController extends Controller
         $categories = $this->categoryRepository->getAllCategory();
 
         return response()->json([
+            'code' => 200,
+            'status' => "success",
             'data' => $categories,
         ], 200);
     }
@@ -57,8 +59,10 @@ class CategoryController extends Controller
         $this->categoryRepository->createCategory($dataInsert);
 
         return response()->json([
+            'code' => 201,
+            'status' => "success",
             'message' => "Category created successfully",
-        ], 200);
+        ], 201);
     }
 
     /**
@@ -73,11 +77,17 @@ class CategoryController extends Controller
 
         if (empty($category)) {
             return response()->json([
+                'code' => 204,
+                'status' => "error",
                 'message' => "Category not found",
-            ], 404);
+            ], 204);
         }
 
-        return response($category, 200);
+        return response()->json([
+            'code' => 200,
+            'status' => "success",
+            'data' => $category,
+        ], 200);
     }
 
     /**
@@ -104,8 +114,10 @@ class CategoryController extends Controller
 
         if (empty($category)) {
             return response()->json([
+                'code' => 204,
+                'status' => "success",
                 'message' => "Category not found",
-            ], 404);
+            ], 204);
         } 
 
         else {
@@ -118,6 +130,8 @@ class CategoryController extends Controller
             $this->categoryRepository->updateCategory($dataUpdate);
 
             return response()->json([
+                'code' => 200,
+                'status' => "success",
                 'message' => "Category updated successfully",
             ], 200);
         }
@@ -133,13 +147,17 @@ class CategoryController extends Controller
     {
         if (empty($this->categoryRepository->findCategory($id))) {
             return response()->json([
+                'code' => 204,
+                'status' => "error",
                 'message' => "Category not found",
-            ], 404);
+            ], 204);
         }
 
         $this->categoryRepository->deleteCategory($id);
 
         return response()->json([
+            'code' => 200,
+            'status' => "success",
             'message' => "Category deleted successfully",
         ], 200);
     }
@@ -150,12 +168,16 @@ class CategoryController extends Controller
 
         if (empty($data)) {
             return response()->json([
-                'message' => "Not found",
-            ], 200);
+                'code' => 204,
+                'status' => "error",
+                'message' => "No content",
+            ], 204);
         } 
 
         else {
             return response()->json([
+                'code' => 200,
+                'status' => "success",
                 'data' => $data,
             ], 200);
         }

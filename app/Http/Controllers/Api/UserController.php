@@ -28,6 +28,8 @@ class UserController extends Controller
         $users = $this->userRepository->getAllUser();
 
         return response()->json([
+            'code' => 200,
+            'status' => "success",
             'data' => $users,
         ], 200);
     }
@@ -65,12 +67,16 @@ class UserController extends Controller
 
         if (empty($user)) {
             return response()->json([
+                'code' => 204,
+                'status' => "error",
                 'message' => "User not found",
-            ], 404);
+            ], 204);
         }
 
         return response()->json([
-            'user' => $user,
+            'code' => 200,
+            'status' => "success",
+            'data' => $user,
         ], 200);
     }
 
@@ -98,8 +104,10 @@ class UserController extends Controller
 
         if (empty($user)) {
             return response()->json([
+                'code' => 204,
+                'status' => "error",
                 'message' => "User not found",
-            ], 404);
+            ], 204);
         }
         
         else {
@@ -125,8 +133,10 @@ class UserController extends Controller
             $this->userRepository->updateUser($dataUpdate);
 
             return response()->json([
+                'code' => 200,
+                'status' => "success",
                 'message' => "User update successfully",
-            ]);
+            ], 200);
         }
     }
 
@@ -140,13 +150,17 @@ class UserController extends Controller
     {
         if (empty($this->userRepository->findUser($id))) {
             return response()->json([
+                'code' => 204,
+                'status' => "error",
                 'message' => "User not found",
-            ], 404);
+            ], 204);
         }
 
         $this->userRepository->deleteUser($id);
 
         return response()->json([
+            'code' => 200,
+            'status' => "success",
             'message' => "User deleted successfully",
         ], 200);
     }
