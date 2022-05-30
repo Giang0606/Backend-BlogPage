@@ -56,6 +56,14 @@ class CategoryController extends Controller
             'description' => $request->description,
         ];
 
+        if (!empty($this->categoryRepository->findCategoryByName($request['category_name']))) {
+            return response()->json([
+                'code' => 409,
+                'status' => "error",
+                'message' => "Category name exists",
+            ]);
+        }
+
         $this->categoryRepository->createCategory($dataInsert);
 
         return response()->json([
@@ -115,7 +123,7 @@ class CategoryController extends Controller
         if (empty($category)) {
             return response()->json([
                 'code' => 204,
-                'status' => "success",
+                'status' => "error",
                 'message' => "Category not found",
             ], 204);
         } 
@@ -126,6 +134,14 @@ class CategoryController extends Controller
                 'category_name' => $request->category_name,
                 'description' => $request->description,
             ];
+
+            if (!empty($this->categoryRepository->checkExistName($dataUpdate))) {
+                return response()->json([
+                    'code' => 409,
+                    'status' => "error",
+                    'message' => "Category name exists",
+                ]);
+            }
 
             $this->categoryRepository->updateCategory($dataUpdate);
 

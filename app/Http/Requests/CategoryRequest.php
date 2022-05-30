@@ -24,7 +24,7 @@ class CategoryRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'category_name' => ['required', 'string', 'max:30', 'unique:categories'], 
+            'category_name' => ['required', 'string', 'max:30'], 
             'description' => ['required', 'string', 'max:300'],
         ];
     }

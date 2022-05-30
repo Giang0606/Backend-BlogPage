@@ -22,6 +22,16 @@ class CategoryRepository {
         return $this->model->where('id', $id)->first();
     }
 
+    public function findCategoryByName($name)
+    {
+        return $this->model->where('category_name', $name)->first();
+    }
+
+    public function checkExistName($data)
+    {
+        return $this->model->where('id', '!=', $data['id'])->where('category_name', $data['category_name'])->first();
+    }
+
     public function createCategory($data)
     {
         return $this->model->create($data);
