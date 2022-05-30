@@ -40,6 +40,6 @@ Route::delete('post/{url}', [App\Http\Controllers\Api\PostController::class, 'de
 Route::get('category', [App\Http\Controllers\Api\CategoryController::class, 'index']);
 Route::get('category/{id}', [App\Http\Controllers\Api\CategoryController::class, 'show']);
 Route::post('category', [App\Http\Controllers\Api\CategoryController::class, 'store']);
-Route::put('category/{id}', [App\Http\Controllers\Api\CategoryController::class, 'update']);
+Route::post('category/{id}', [App\Http\Controllers\Api\CategoryController::class, 'update']);
 Route::delete('category/{id}', [App\Http\Controllers\Api\CategoryController::class, 'destroy']);
 Route::get('category/search/{key}', [App\Http\Controllers\Api\CategoryController::class, 'search']);
