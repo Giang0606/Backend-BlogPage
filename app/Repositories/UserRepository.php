@@ -41,4 +41,9 @@ class UserRepository {
     {
         return $this->model->where('id', $id)->delete();
     }
+
+    public function findUserByBirthday($day)
+    {
+        return $this->model->where('birth_of_date', 'LIKE', "%".$day."%")->get();
+    }
 }
